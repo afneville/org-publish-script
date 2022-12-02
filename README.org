@@ -1,0 +1,3 @@
+#+TITLE: Documents & Literate Notebooks
+
+A version control repository for my /org/, /dot/, and /latex/ source files.
