@@ -1,0 +1,30 @@
+\documentclass[10pt]{report}
+
+\title{Test Document}
+\author{Alexander Neville}
+\date{\today}
+
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+% \usepackage{showframe}
+\usepackage[a4paper, includefoot, includehead, margin=2.54cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
+\renewcommand{\chaptermark}[1]{\markboth{\textbf{\Roman{chapter}} - \textit{#1}}{}}
+\fancyhf{}
+\rhead{\textit{Test Document}}
+\rfoot{page \textbf{\thepage}}
+\lfoot{\nouppercase{\leftmark}}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+\pagestyle{fancy}
+\end{document}
