@@ -1,0 +1,36 @@
+#+latex_class_options: [10pt]
+#+options: toc:nil
+#+options: title:nil
+
+#+latex_header: \usepackage{graphicx}
+#+latex_header: \usepackage{blindtext}
+#+latex_header: \usepackage{tcolorbox}
+#+latex_header: \usepackage{etoolbox}
+#+latex_header: \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+#+latex_header: \makeatletter
+#+latex_header: \def\@makechapterhead#1{%
+#+latex_header:   \vspace*{50\p@}%
+#+latex_header:   {\parindent \z@ \raggedright \normalfont
+#+latex_header:     \ifnum \c@secnumdepth >\m@ne
+#+latex_header:         %\huge\bfseries \@chapapp\space \thechapter
+#+latex_header:         \Huge\bfseries \thechapter.\space%
+#+latex_header:         %\par\nobreak
+#+latex_header:         %\vskip 20\p@
+#+latex_header:     \fi
+#+latex_header:     \interlinepenalty\@M
+#+latex_header:     \Huge \bfseries #1\par\nobreak
+#+latex_header:     \vskip 40\p@
+#+latex_header:   }}
+#+latex_header: \makeatother
+#+latex_header: \usepackage[a4paper, includefoot, includehead, margin=2.54cm]{geometry}
+#+latex_header: \usepackage{fancyhdr}
+#+latex_header: \pagestyle{fancy}
+#+latex_header: \renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
+#+latex_header: \renewcommand{\chaptermark}[1]{\markboth{\textbf{\Roman{chapter}} - \textit{#1}}{}}
+#+latex_header: \fancyhf{}
+#+latex_header: \rhead{\textit{Test Document}}
+#+latex_header: \rfoot{page \textbf{\thepage}}
+#+latex_header: \lfoot{\nouppercase{\leftmark}}
+#+latex_header: \renewcommand{\headrulewidth}{0pt}
+#+latex_header: \renewcommand{\footrulewidth}{0.4pt}
+
