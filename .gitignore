@@ -43,6 +43,8 @@
 ## Build tool directories for auxiliary files
 # latexrun
 latex.out/
+out/
+ltximg/
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
