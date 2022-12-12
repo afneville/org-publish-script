@@ -1,4 +1,25 @@
 
 #+TITLE: My Documents
 
-A version control repository for my /org/, /dot/, and /latex/ source files.
+This is a version control repository for my /org/ and /latex/ source files. Unless there is a technical requirement to use latex directly, I embed latex fragments in Emacs Org Mode files and have the corresponding tex files generated automatically. I have included an elisp script to publish the org files and graphics into an output directory which is not versioned as it would lead to the duplication of code in org and tex files.
+
+* Dependencies
+
+- GNU Emacs
+- GNU Make
+- Tex Live (=pdflatex= & =latexmk=)
+
+* Build
+
+=make=
+
+* University
+
+- [[./src/org/maths.org][Maths]]
+- [[./src/org/logic.org][Logic]]
+- [[./src/org/dsa.org][DSA]]
+
+* Personal
+
+- [[./src/org/unix.org][Unix]]
+- [[./src/org/devops.org][DevOps]]
