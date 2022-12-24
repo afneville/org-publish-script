@@ -5,21 +5,24 @@ TEXCC    := latexmk -pdf -shell-escape -cd --output-format=pdf
 ORGCC    := emacs -q --script
 
 # Directories
-SRC_DIR       := ./src
-SRC_ORG_DIR   := ./src/org
-SRC_RES_DIR	  := ./src/res
-OUT_DIR       := ./out
-OUT_TEX_DIR   := ./out/tex
-OUT_HTML_DIR  := ./out/html
-OUT_RES_DIR   := ./out/res
-OUT_PDF_DIR   := ./out/pdf
+SRC_DIR           := ./src
+SRC_ORG_DIR       := ./src/org
+SRC_RES_DIR	      := ./src/org/res
+OUT_DIR           := ./out
+OUT_TEX_DIR       := ./out/tex
+OUT_HTML_DIR      := ./out/html
+OUT_TEX_RES_DIR   := ./out/tex/res
+OUT_HTML_RES_DIR  := ./out/html/res
+TMP_PDF_DIR   	  := ./out/tex
+OUT_PDF_DIR       := ./out/pdf
 
 # Files
-PUB_FILE      := ./publish.el
-ORG_FILES     := $(wildcard $(SRC_ORG_DIR)/*.org)
-TEX_FILES     := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_TEX_DIR)/%.tex,$(ORG_FILES))
-HTML_FILES    := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_HTML_DIR)/%.html,$(ORG_FILES))
-PDF_FILES     := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_PDF_DIR)/%.pdf,$(ORG_FILES))
+PUB_FILE          := ./publish.el
+ORG_FILES         := $(wildcard $(SRC_ORG_DIR)/*.org)
+TEX_FILES         := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_TEX_DIR)/%.tex,$(ORG_FILES))
+HTML_FILES        := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_HTML_DIR)/%.html,$(ORG_FILES))
+TMP_PDF_FILES     := $(patsubst $(SRC_ORG_DIR)/%.org,$(TMP_PDF_DIR)/%.pdf,$(ORG_FILES))
+OUT_PDF_FILES     := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_PDF_DIR)/%.pdf,$(ORG_FILES))
 
 # A makefile is composed of "rules".
 # Rules are of the form:
@@ -48,21 +51,23 @@ PDF_FILES     := $(patsubst $(SRC_ORG_DIR)/%.org,$(OUT_PDF_DIR)/%.pdf,$(ORG_FILE
 
 .PHONY: clean publish build init
 
-build: $(PDF_FILES)
-	mv $(OUT_TEX_DIR)/*.pdf $(OUT_PDF_DIR)
+build: $(OUT_PDF_FILES)
 
-init: $(OUT_DIR) $(OUT_TEX_DIR) $(OUT_HTML_DIR) $(OUT_RES_DIR) $(OUT_PDF_DIR)
+init: $(OUT_DIR) $(OUT_TEX_DIR) $(OUT_HTML_DIR) $(OUT_TEX_RES_DIR) $(OUT_HMTL_RES_DIR) $(OUT_PDF_DIR)
 
 clean:
 	$(RMDIR) $(OUT_DIR)
 
 publish: $(TEX_FILES)
 
-$(TEX_FILES): | init
+$(TEX_FILES): $(ORG_FILES) $(SRC_RES_DIR) | init
 	$(ORGCC) $(PUB_FILE)
 
-$(PDF_FILES): $(TEX_FILES)
+$(OUT_PDF_FILES): $(TMP_PDF_FILES)
+	cp $(TMP_PDF_DIR)/*.pdf $(OUT_PDF_DIR)
+
+$(TMP_PDF_FILES): $(TEX_FILES)
 	$(TEXCC) $^
 
-$(OUT_DIR) $(OUT_TEX_DIR) $(OUT_HTML_DIR) $(OUT_RES_DIR) $(OUT_PDF_DIR):
+$(OUT_DIR) $(OUT_TEX_DIR) $(OUT_HTML_DIR) $(OUT_HTML_RES_DIR) $(OUT_TEX_RES_DIR) $(OUT_PDF_DIR):
 	$(MKDIR) $@

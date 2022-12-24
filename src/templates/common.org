@@ -10,6 +10,7 @@
 #+latex_header: \usepackage{tcolorbox}
 #+latex_header: \usepackage{etoolbox}
 #+latex_header: \usepackage[indent=0.5cm]{parskip}
+#+latex_header: \hypersetup{hidelinks}
 #+latex_header: \usepackage{minted}
 #+latex_header: \usemintedstyle{bw}
 #+latex_header: \setminted{autogobble=true, breaklines=true, breakbytokenanywhere=true, fontsize=\small, xleftmargin=1cm, xrightmargin=1cm}
