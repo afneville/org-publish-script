@@ -34,7 +34,7 @@
 #+latex_header:     \vskip 40\p@
 #+latex_header:   }}
 #+latex_header: \makeatother
-#+latex_header: \usepackage[a4paper, includefoot, includehead, margin=2.54cm]{geometry}
+#+latex_header: \usepackage[a4paper, includefoot, margin=2.54cm]{geometry}
 #+latex_header: \usepackage{fancyhdr}
 #+latex_header: \pagestyle{fancy}
 # #+latex_header: \renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
