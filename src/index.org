@@ -1,0 +1,11 @@
+
+#+BEGIN_EXPORT html
+<div id="inline-logo">
+  <object width="100%" data="/res/site_logo.svg"></object>
+</div>
+#+END_EXPORT
+
+Hello, my name is Alex. I am a first year undergraduate computer science student at the University of Birmingham, UK.
+
+- [[https://github.com/alexanderneville][Project Portfolio]]
+- [[https://github.com/alexanderneville][Software Blog]]

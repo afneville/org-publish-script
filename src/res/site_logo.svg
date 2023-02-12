@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="15"
+   height="10"
+   viewBox="0 0 15 10"
+   version="1.1"
+   id="svg5"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs2"><linearGradient
+       id="linearGradient1525"><stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0"
+         id="stop1523" /></linearGradient></defs><g
+     id="layer1"
+     transform="translate(-15,-40)"><path
+       style="fill:#80a1e4;fill-opacity:1;stroke-width:0"
+       d="m 15,50 3,-10 h 1 l -3,10 h -1"
+       id="path330" /><path
+       style="fill:#80a1e4;fill-opacity:1;stroke-width:0"
+       d="M 23,50 H 22 L 19,40 h 1 l 3,10"
+       id="path330-3" /><path
+       style="fill:#80a1e4;fill-opacity:1;stroke-width:0"
+       d="M 24,50 V 40 h 1 v 10 h -1"
+       id="path1610" /><path
+       style="fill:#80a1e4;fill-opacity:1;stroke-width:0"
+       d="M 29,50 V 40 h 1 v 10 h -1"
+       id="path1610-5" /><path
+       style="fill:#80a1e4;fill-opacity:1;stroke-width:0"
+       d="M 29,50 H 28 L 25,40 h 1 l 3,10"
+       id="path330-3-7" /><path
+       style="fill:#80a1e4;fill-opacity:1;stroke-width:0"
+       d="m 18,46 h 2 l 1,1 h -4 l 1,-1"
+       id="path1678" /></g></svg>
