@@ -5,7 +5,7 @@
 </div>
 #+END_EXPORT
 
-Hello, my name is Alex. I am a first year undergraduate computer science student at the University of Birmingham, UK.
+Hello, my name is Alex. I am a first-year undergraduate computer science student at the University of Birmingham, UK. I am particularly interested in /Free and Open Source/ software. My preferred languages are C, Python and lately C++. I am currently learning to use Linux and GNU, and some of their common free alternatives, more effectively.
 
 - [[https://github.com/alexanderneville][Project Portfolio]]
-- [[https://github.com/alexanderneville][Software Blog]]
+- [[./blog/index.org][Software Blog]]

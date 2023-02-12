@@ -35,6 +35,7 @@ body {
   top: 0;
   width: 100vw;
   background-color: var(--bg);
+  z-index: 999;
 }
 
 .main-header-line {

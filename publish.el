@@ -62,12 +62,13 @@
 </div>
 ")
 
-(setq org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org</a> mode 9.5.5")
+(setq org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org</a> 9.5.5")
+
 (setq org-html-postamble
 "<div class=\"footer\">
   <div class=\"content-width\">
-    <p>&copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GPL), according to the <a href=\"/license.html\">content license</a>.</p>
-    <p>%c (%T)</p>
+    <p>&copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GNU GPL), according to the <a href=\"/license.html\">content license</a>.</p>
+    <p>Generated with %c at (%T). <a href=\"https://github.com/alexanderneville/site\">View source</a>.</p>
   </div>
 </div>
 "
@@ -95,7 +96,7 @@
             :publishing-function org-html-publish-to-html
 	    ;; options
             :headline-levels 5
-            :section-numbers t
+            :section-numbers nil
             :with-author nil
             :with-creator nil
             :with-date nil
@@ -109,28 +110,26 @@
             :html-head-include-scripts nil
 	    )
 
-;; 	("blog_html"
-;;             :recursive t
-;;             :base-directory "./src/blog"
-;;             :publishing-directory "./out/html/blog"
-;;             :base-extension "org"
-;;             :publishing-function org-html-publish-to-html
-;; 	    ;; options
-;;             :headline-levels 5
-;;             :section-numbers t
-;;             :with-author nil
-;;             :with-creator nil
-;;             :with-date nil
-;;             :with-timestamps nil
-;;             :with-title t
-;;             :with-toc 5
-;;             :with-todo-keywords nil
-;;             :html-head-include-default-style nil
-;;             :html-head-include-scripts nil
-;;             :html-postamble nil
-;;             :html-preamble nil
-;; 	    :exclude "tables/"
-;; 	    )
+ 	("blog_html"
+             :recursive t
+             :base-directory "./src/blog"
+             :publishing-directory "./out/html/blog"
+             :base-extension "org"
+             :publishing-function org-html-publish-to-html
+             :headline-levels 5
+             :section-numbers t
+             :with-author nil
+             :with-creator nil
+             :with-date nil
+             :with-timestamps nil
+             :with-title t
+             :with-toc 5
+             :with-todo-keywords nil
+             :html-head-include-default-style nil
+             :html-head-include-scripts nil
+	     :auto-sitemap t
+ 	     :exclude "tables/"
+ 	    )
 
         ("main_html_resources"
 	    :recursive t
@@ -139,13 +138,13 @@
             :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
             :publishing-function org-publish-attachment)
 
-;         ("blog_html_resources"
-; 	    :recursive t
-;             :base-directory "./src/blog/res"
-;             :publishing-directory "./out/html/blog/res"
-;             :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
-;             :publishing-function org-publish-attachment)
-; 
+        ("blog_html_resources"
+ 	    :recursive t
+            :base-directory "./src/blog/res"
+            :publishing-directory "./out/html/blog/res"
+            :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
+            :publishing-function org-publish-attachment)
+ 
          ))
 
 (org-publish-all t)
