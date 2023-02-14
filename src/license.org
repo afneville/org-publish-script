@@ -3,9 +3,9 @@
 <h1>License Notice</h1>
 #+END_EXPORT
 
-Unless explicitly stated otherwise, the content of this site is my own work. All such original work is distributed under /copyleft/ terms.
+Unless explicitly stated otherwise, the content of this website is my own work. All original content is distributed under the terms of a /copyleft/ license, depending on its type: 
 
 - All text, images and other graphics are distributed under the terms of the [[https://creativecommons.org/licenses/by-sa/4.0/][Creative Commons Attribution-ShareAlike 4.0]] license.
 - All original source code, including inline source code, is distributed under the terms of the [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License]] version >= 3.
 
-The complete source code for the site can be found [[https://github.com/alexanderneville/docs][here]].
+The complete source code for this website can be found [[https://github.com/alexanderneville/website][here]].

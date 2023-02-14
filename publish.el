@@ -3,6 +3,8 @@
 
 ;; https://orgmode.org/manual/Publishing-options.html 
 
+(setq user-full-name "Alexander Neville")
+
 (setq org-html-preamble
 "<div class=\"header\">
   <div class=\"main-header-line\">
@@ -51,6 +53,7 @@
       <ul>
         <li><a href=\"/index.html\">Home</a></li>
         <li><a href=\"/license.html\">License</a></li>
+        <li><a href=\"/blog/\">Blog</a></li>
       </ul>
     </div>
   </div>
@@ -62,13 +65,13 @@
 </div>
 ")
 
-(setq org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org</a> 9.5.5")
+(setq org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org mode</a> 9.5.5")
 
 (setq org-html-postamble
 "<div class=\"footer\">
   <div class=\"content-width\">
-    <p>&copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GNU GPL), according to the <a href=\"/license.html\">content license</a>.</p>
-    <p>Generated with %c at (%T). <a href=\"https://github.com/alexanderneville/site\">View source</a>.</p>
+    <p>&copy 2023 Alexander Neville. Original content is distributed under copyleft license terms (CC BY-SA / GNU GPL), according to the <a href=\"/license.html\">content license</a>.</p>
+    <p>Made with %c @ (%T), <a href=\"https://github.com/alexanderneville/website\">view source</a>.</p>
   </div>
 </div>
 "
@@ -97,7 +100,7 @@
 	    ;; options
             :headline-levels 5
             :section-numbers nil
-            :with-author nil
+            :with-author t
             :with-creator nil
             :with-date nil
             :with-timestamps nil
@@ -128,6 +131,8 @@
              :html-head-include-default-style nil
              :html-head-include-scripts nil
 	     :auto-sitemap t
+	     :sitemap-filename "sitemap.org"
+	     :sitemap-title "sitemap"
  	     :exclude "tables/"
  	    )
 
