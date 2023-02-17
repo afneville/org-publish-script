@@ -5,6 +5,18 @@
 
 (setq user-full-name "Alexander Neville")
 
+(setq org-html-mathjax-options 
+      '((path "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
+       (scale "100")
+       (align "center")
+       (font "STIX-Web")
+       (linebreaks "false")
+       (autonumber "AMS")
+       (indent "0em")
+       (multlinewidth "85%")
+       (tagindent ".8em")
+       (tagside "right")))
+
 (setq org-html-preamble
 "<div class=\"header\">
   <div class=\"main-header-line\">
@@ -70,7 +82,7 @@
 (setq org-html-postamble
 "<div class=\"footer\">
   <div class=\"content-width\">
-    <p>&copy 2023 Alexander Neville. Original content is distributed under copyleft license terms (CC BY-SA / GNU GPL), according to the <a href=\"/license.html\">content license</a>.</p>
+    <p>Copyright &copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GNU GPL), per the <a href=\"/license.html\">content license</a>.</p>
     <p>Made with %c @ (%T), <a href=\"https://github.com/alexanderneville/website\">view source</a>.</p>
   </div>
 </div>
@@ -78,7 +90,10 @@
 )
 
 (setq org-html-head-extra
-"<link href=\"/res/light.css\" rel=\"stylesheet\" id=\"light-stylesheet\" />
+"
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+<link href=\"/res/light.css\" rel=\"stylesheet\" id=\"light-stylesheet\" />
 <link
   href=\"/res/dark.css\"
   rel=\"stylesheet alternate\"
@@ -120,7 +135,7 @@
              :base-extension "org"
              :publishing-function org-html-publish-to-html
              :headline-levels 5
-             :section-numbers t
+             :section-numbers nil
              :with-author nil
              :with-creator nil
              :with-date nil
