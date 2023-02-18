@@ -224,3 +224,7 @@ pre {
   color: var(--fg);
   text-decoration: none;
 }
+
+#table-of-contents h2 {
+  display: none;
+}
