@@ -19,6 +19,9 @@ chmod u+x export.sh
 #+end_src
 
 * Export Configuration
+
+Rather than requiring an existing emacs environment, the export script will start emacs with a clean configuration and then load the contents of the source blocks in this file.
+
 ** Common Setup
 
 Require the exporters.
@@ -42,22 +45,22 @@ Set some default variables (affecting both exporters)
  org-export-with-section-numbers nil
  org-export-select-tags nil
  org-export-with-author nil
- ;; org-export-with-broken-links nil
+ org-export-with-broken-links t
  org-export-with-clocks nil
  org-export-with-creator nil
  org-export-with-date nil
  org-export-with-drawers nil
  org-export-with-email nil
- ;; org-export-with-emphasize nil
+ org-export-with-emphasize t
  org-export-with-fixed-width nil
  org-export-with-footnotes nil
- ;; org-export-with-latex nil
+ org-export-with-latex t
  org-export-with-planning nil
  org-export-with-priority nil
  org-export-with-properties nil
  org-export-with-special-strings nil
  org-export-with-sub-superscripts '{}
- ;; org-export-with-tables nil
+ org-export-with-tables t
  org-export-with-tags nil
  org-export-with-tasks nil
  org-export-with-timestamps nil
@@ -142,7 +145,7 @@ Configuration for the Latex back-end. First, set the value of some variables.
  )
 #+end_src
 
-Create some latex classes, add them to the list of supported classes and set the default class to one that was just created.
+Create some latex classes, add them to the list of supported classes and set the default class to one which was just created.
 
 #+begin_src emacs-lisp
 (setq
@@ -150,7 +153,7 @@ Create some latex classes, add them to the list of supported classes and set the
                   ("\\subsection{%s}" . "\\subsection*{%s}")
                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
  short-report    (append '(("\\chapter{%s}" . "\\chapter*{%s}")) custom-article)
- long-report     (append'(("\\part{%s}" . "\\part*{%s}")) short-report)
+ long-report     (append '(("\\part{%s}" . "\\part*{%s}")) short-report)
  )
 
 (setq report-common-header-string (concat "\\documentclass{report}\n[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n" default-head-setup chapter-redef common-head report-fancyheader-def "[EXTRA]"))
@@ -176,7 +179,11 @@ Set the value of some variables.
 #+begin_src emacs-lisp
 (setq org-html-self-link-headlines t
       org-html-metadata-timestamp-format "%H:%M:%S %d/%m/%Y"
-      org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org mode</a> 9.5.5")
+      org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org mode</a> 9.5.5"
+      org-html-head-include-default-style nil
+      org-html-head-include-scripts nil
+      ;; org-html-prefer-user-labels t
+      )
 #+end_src
 
 
@@ -213,7 +220,9 @@ Additional lines for the head of each exported document.
 <script src=\"/res/script.js\" defer></script>")
 #+end_src
 
-*** Preamble/Postamble
+*** Preamble
+
+The preamble is the HTML inserted at the beginning of each HTML document. This includes the site header.
 
 #+begin_src emacs-lisp
 (setq org-html-preamble
@@ -276,11 +285,13 @@ Additional lines for the head of each exported document.
 </div>")
 #+end_src
 
+*** Postamble
+
 #+begin_src emacs-lisp
-
-
 (setq org-html-postamble
-"<div class=\"footer\">
+"<p id=\"author_name\">%a</p>
+<p id=\"article_date\">%d</p>
+<div class=\"footer\">
   <div class=\"content-width\">
     <p>Copyright &copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GNU GPL), per the <a href=\"/license.html\">content license</a>.</p>
     <p>Made with %c @ (%T), <a href=\"https://github.com/alexanderneville/website\">view source</a>.</p>
@@ -290,70 +301,75 @@ Additional lines for the head of each exported document.
 
 ** Publishing
 
-The list of publishing functions.
+Create the list of exporters and populate the contents of the output directory.
+
+*** Latex
 
 #+begin_src emacs-lisp
-(setq org-publish-project-alist
-      '(
-        ("main_html"
+
+#+end_src
+
+*** HTML
+
+The static index pages located at =/= do not require titles or *TOCs*.
+
+#+begin_src emacs-lisp
+(setq main_html
+        '("main_html"
          :recursive nil
          :base-directory "./src"
          :publishing-directory "./out/html"
          :base-extension "org"
          :publishing-function org-html-publish-to-html
-         ;; options
-         :headline-levels 5
-         :section-numbers nil
-         :with-author t
-         :with-creator nil
-         :with-date nil
-         :with-timestamps nil
-         :with-title nil
-         :with-author nil
-         :with-date nil
+	       :with-title nil
          :with-toc nil
-         :with-todo-keywords nil
-         :html-head-include-default-style nil
-         :html-head-include-scripts nil
+         :headline-levels 5
          )
+)
+#+end_src
 
-        ("blog_html"
+Recursively export the contents of the blog directory.
+
+#+begin_src emacs-lisp
+(setq blog_html
+      '("blog_html"
          :recursive t
          :base-directory "./src/blog"
          :publishing-directory "./out/html/blog"
          :base-extension "org"
          :publishing-function org-html-publish-to-html
-         :headline-levels 5
-         :section-numbers nil
-         :with-author nil
-         :with-creator nil
-         :with-date nil
-         :with-timestamps nil
          :with-title t
          :with-toc 1
-         :with-todo-keywords nil
-         :html-head-include-default-style nil
-         :html-head-include-scripts nil
+         :headline-levels 5
          :exclude "tables/"
-         )
+         ))
 
-        ("main_html_resources"
+#+end_src
+
+Finally, export the site resources. This step is just copying the files into the output directory.
+
+#+begin_src emacs-lisp
+(setq main_res
+        '("main_html_resources"
          :recursive t
          :base-directory "./src/res"
          :publishing-directory "./out/html/res"
          :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
          :publishing-function org-publish-attachment)
 
-        ("blog_html_resources"
+      blog_res
+         '("blog_html_resources"
          :recursive t
          :base-directory "./src/blog/res"
          :publishing-directory "./out/html/blog/res"
          :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
-         :publishing-function org-publish-attachment)
-        
-        ))
+         :publishing-function org-publish-attachment))
+#+end_src
 
+*** Export
 
+#+begin_src emacs-lisp
+(setq org-publish-project-alist (append (list main_html) (list blog_html)  (list main_res) (list blog_res)))
 #+end_src
 
 With initialisation complete, execute all the publishing functions.

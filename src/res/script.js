@@ -25,7 +25,6 @@ function light_theme() {
 function dark_theme() {
   var light_stylesheet = document.getElementById("light-stylesheet");
   var dark_stylesheet = document.getElementById("dark-stylesheet");
-  console.log(dark_stylesheet);
   disable_stylesheet(light_stylesheet);
   enable_stylesheet(dark_stylesheet);
   document
@@ -40,7 +39,6 @@ function dark_theme() {
 }
 
 function switch_theme() {
-  console.log("switch_theme");
   var light_stylesheet = document.getElementById("light-stylesheet");
   if (light_stylesheet.rel === "stylesheet alternate") {
     light_theme();
@@ -49,13 +47,10 @@ function switch_theme() {
   }
 }
 function page_start() {
-  console.log("page_start");
   window.scrollTo(0, 0);
 }
 function display_menu() {
-  console.log("display_menu");
   var node = document.getElementById("dropdown");
-  console.log(node.style.display);
   if (node.style.display === "block") {
     node.style.display = "none";
   } else {
@@ -83,37 +78,53 @@ document
   .addEventListener("click", home);
 
 function process_path() {
-  var pathname = location.pathname;
-  pathname = pathname.slice(1, pathname.length);
-  console.log(pathname);
-  var path_parts = pathname.split("/");
-  console.log(path_parts);
-  console.log(path_parts.length);
-  var element = document.getElementById("breadcrumbs");
-  var link = "/";
-  if (path_parts.length > 1) {
-    for (var i = 0; i < path_parts.length - 1; i++) {
-      link += path_parts[i];
-      link += "/";
-      console.log(link);
-      console.log(path_parts[i]);
-      var new_link = '<a href="' + link + '">' + path_parts[i] + "/</a>";
-      console.log(new_link);
-      element.innerHTML += new_link;
+    var pathname = location.pathname;
+    pathname = pathname.slice(1, pathname.length);
+    var path_parts = pathname.split("/");
+    var element = document.getElementById("breadcrumbs");
+    var link = "/";
+    if (path_parts.length > 1) {
+        for (var i = 0; i < path_parts.length - 1; i++) {
+            link += path_parts[i];
+            link += "/";
+            var new_link = '<a href="' + link + '">' + path_parts[i] + "/</a>";
+            element.innerHTML += new_link;
+        }
     }
-  }
-  var filename_index = path_parts.length - 1;
-  if (path_parts[filename_index] !== "index.html") {
-    link += path_parts[filename_index];
-    console.log(path_parts[filename_index].split(".")[0]);
-    var new_link =
-      '<a href="' +
-      link +
-      '">' +
-      path_parts[filename_index].split(".")[0] +
-      "</a>";
-    element.innerHTML += new_link;
-  }
+    var filename_index = path_parts.length - 1;
+    if (path_parts[filename_index] !== "index.html" && path_parts[filename_index].length > 0) {
+        link += path_parts[filename_index];
+        var new_link =
+            '<a href="' +
+                link +
+                '">' +
+                path_parts[filename_index].split(".")[0] +
+                "</a>";
+        element.innerHTML += new_link;
+        if (location.pathname.includes("blog")) {
+            author_name = document.getElementById("author_name").innerHTML;
+            article_date = document.getElementById("article_date").innerHTML;
+            title = document.getElementsByClassName("title")[0]
+            author_name_element = document.createElement("p");
+            article_date_element = document.createElement("p");
+            author_name_element.classList = "metainfo";
+            article_date_element.classList = "metainfo"
+            author_name_element.innerHTML = author_name;
+            if (article_date.length === 0) {
+                article_date_element.innerHTML = "undated"
+                article_date_element.style.fontStyle = "italic"
+            } else {
+                article_date_element.innerHTML = article_date.split(" ")[1]; 
+            }
+            title.parentNode.insertBefore(article_date_element, title.nextSibling); 
+            title.parentNode.insertBefore(author_name_element, title.nextSibling); 
+        }
+    }
 }
 
-process_path();
+function main() {
+    process_path();
+    document.getElementById("table-of-contents").getElementsByTagName("h2")[0].innerHTML = "Contents"; 
+}
+
+main();

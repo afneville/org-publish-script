@@ -225,6 +225,54 @@ pre {
   text-decoration: none;
 }
 
+#author_name,
+#article_date {
+  display: none;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+.metainfo {
+  color: var(--fg-dark);
+  margin-top: 0.25em;
+  margin-bottom: 0;
+}
+
+h1 + * {
+  margin-top: 1.375em;
+}
+
+h1 + .metainfo {
+  margin-top: 0.375em;
+}
+
+#table-of-contents {
+  margin-left: 1em;
+  margin-top: 1em;
+  border-left: 1px solid var(--fg-accent);
+  padding-left: 0.5em;
+}
+
 #table-of-contents h2 {
+  margin-bottom: 0em;
+  margin-top: 0em;
+}
+
+code {
+  /* background: var(--bg-accent); */
+  /* border: 1px solid var(--fg-accent); */
+  font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
+}
+
+label,
+.figure p,
+.listing-number,
+.figure-number {
+  color: var(--fg-dark);
+}
+
+label {
   display: none;
 }
