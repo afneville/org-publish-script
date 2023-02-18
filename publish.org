@@ -1,9 +1,24 @@
+#+TITLE: Publishing System
+#+AUTHOR: Alexander Neville
+#+DATE:
+#+OPTIONS:
+#+PROPERTY: header-args :tangle "./publish.el"
+
+[[https://orgmode.org/manual/Publishing-options.html][Publishing Options]]
+
+* Common Setup
+
+#+begin_src emacs-lisp
 (require 'ox-html)
 (require 'ox-latex)
 (require 'ox-publish)
+#+end_src
 
+#+begin_src emacs-lisp
 (setq user-full-name "Alexander Neville")
+#+end_src
 
+#+begin_src emacs-lisp
 (setq
       org-export-headline-levels 3
       org-export-with-archived-trees nil
@@ -36,7 +51,11 @@
       org-export-with-toc nil
       org-export-with-todo-keywords nil
 )
+#+end_src
 
+* Latex Settings
+
+#+begin_src emacs-lisp
 (setq
 chapter-redef
 "\\patchcmd{\\chapter}{\\thispagestyle{plain}}{\\thispagestyle{fancy}}{}{}
@@ -100,7 +119,9 @@ default-head-setup
 \\usepackage{hyperref}
 \\usepackage{minted}\n"
 )
+#+end_src
 
+#+begin_src emacs-lisp
 (setq long-report   '(("\\part{%s}" . "\\part*{%s}")
 		      ("\\chapter{%s}" . "\\chapter*{%s}")
 		      ("\\section{%s}" . "\\section*{%s}")
@@ -127,11 +148,18 @@ default-head-setup
     (add-to-list 'org-latex-classes short-report)
     (add-to-list 'org-latex-classes custom-article))
 
+#+end_src
+
+#+begin_src emacs-lisp
 (setq org-latex-listings 'minted
       org-export-in-background t
       org-latex-compiler "pdflatex"
       org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+#+end_src
 
+* HTML Settings
+
+#+begin_src emacs-lisp
 (setq org-html-mathjax-options 
       '((path "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
         (scale "100")
@@ -143,11 +171,16 @@ default-head-setup
         (multlinewidth "85%")
         (tagindent ".8em")
         (tagside "right")))
+#+end_src
 
+#+begin_src emacs-lisp
 (setq org-html-self-link-headlines t
       org-html-metadata-timestamp-format "%H:%M:%S %d/%m/%Y"
       org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org mode</a> 9.5.5")
+#+end_src
 
+
+#+begin_src emacs-lisp
 (setq org-html-head-extra
 "
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
@@ -163,6 +196,11 @@ default-head-setup
 <script src=\"/res/script.js\" defer></script>
 ")
 
+#+end_src
+
+** Preamble/Postamble
+
+#+begin_src emacs-lisp
 (setq org-html-preamble
       "<div class=\"header\">
   <div class=\"main-header-line\">
@@ -222,6 +260,10 @@ default-head-setup
   </div>
 </div>
 ")
+#+end_src
+
+#+begin_src emacs-lisp
+
 
 (setq org-html-postamble
       "<div class=\"footer\">
@@ -232,7 +274,11 @@ default-head-setup
 </div>
 "
       )
+#+end_src
 
+* Publishing
+
+#+begin_src emacs-lisp
 (setq org-publish-project-alist
       '(
         ("main_html"
@@ -293,4 +339,9 @@ default-head-setup
         
         ))
 
+
+#+end_src
+
+#+begin_src emacs-lisp
 (org-publish-all t)
+#+end_src

@@ -21,6 +21,7 @@ body {
   max-width: 75ch;
   margin: auto;
   padding-inline: 1em;
+  overflow-x: scroll;
 }
 
 .justify-items {
@@ -203,10 +204,23 @@ pre {
   background-color: white;
 }
 
-.content p {
-  overflow-x: scroll;
-}
-
 [id] {
   scroll-margin-top: calc(30px + 4.125rem);
+}
+
+
+:is(h1, h2, h3, h4, h5, h6) > a:link,
+:is(h1, h2, h3, h4, h5, h6) > a:visited {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+:is(h1, h2, h3, h4, h5, h6) > a:hover {
+  text-decoration: underline;
+  background-color: var(--bg);
+}
+
+:is(h1, h2, h3, h4, h5, h6) > a:active {
+  color: var(--fg);
+  text-decoration: none;
 }
