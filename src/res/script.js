@@ -12,13 +12,13 @@ function light_theme() {
   disable_stylesheet(dark_stylesheet);
   enable_stylesheet(light_stylesheet);
   document
-    .getElementById("theme_switch_icon")
+    .getElementById("theme-switch-icon")
     .setAttribute("data", "/res/theme_switch_light.svg");
   document
-    .getElementById("page_start_icon")
+    .getElementById("page-start-icon")
     .setAttribute("data", "/res/up_triangle_light.svg");
   document
-    .getElementById("menu_icon")
+    .getElementById("menu-icon")
     .setAttribute("data", "/res/menu_icon_light.svg");
 }
 
@@ -28,13 +28,13 @@ function dark_theme() {
   disable_stylesheet(light_stylesheet);
   enable_stylesheet(dark_stylesheet);
   document
-    .getElementById("theme_switch_icon")
+    .getElementById("theme-switch-icon")
     .setAttribute("data", "/res/theme_switch_dark.svg");
   document
-    .getElementById("page_start_icon")
+    .getElementById("page-start-icon")
     .setAttribute("data", "/res/up_triangle_dark.svg");
   document
-    .getElementById("menu_icon")
+    .getElementById("menu-icon")
     .setAttribute("data", "/res/menu_icon_dark.svg");
 }
 
@@ -50,7 +50,7 @@ function page_start() {
   window.scrollTo(0, 0);
 }
 function display_menu() {
-  var node = document.getElementById("dropdown");
+  var node = document.getElementById("dropdown-line");
   if (node.style.display === "block") {
     node.style.display = "none";
   } else {
@@ -62,26 +62,26 @@ function home() {
 }
 
 document
-  .getElementById("theme_switch_button")
+  .getElementById("theme-switch-button")
   .addEventListener("click", switch_theme);
 document
-  .getElementById("page_start_button")
+  .getElementById("page-start-button")
   .addEventListener("click", page_start);
-document.getElementById("menu_button").addEventListener("click", display_menu);
+document.getElementById("menu-button").addEventListener("click", display_menu);
 
 const system_theme = window.matchMedia("(prefers-color-scheme: dark)");
 if (system_theme.matches) {
   dark_theme();
 }
 document
-  .getElementById("site_icon_container")
+  .getElementById("site-banner-icon-container")
   .addEventListener("click", home);
 
 function process_path() {
     var pathname = location.pathname;
     pathname = pathname.slice(1, pathname.length);
     var path_parts = pathname.split("/");
-    var element = document.getElementById("breadcrumbs");
+    var element = document.getElementById("breadcrumb-parts");
     var link = "/";
     if (path_parts.length > 1) {
         for (var i = 0; i < path_parts.length - 1; i++) {
@@ -102,13 +102,13 @@ function process_path() {
                 "</a>";
         element.innerHTML += new_link;
         if (location.pathname.includes("blog")) {
-            author_name = document.getElementById("author_name").innerHTML;
-            article_date = document.getElementById("article_date").innerHTML;
+            author_name = document.getElementById("author-name").innerHTML;
+            article_date = document.getElementById("article-date").innerHTML;
             title = document.getElementsByClassName("title")[0]
             author_name_element = document.createElement("p");
             article_date_element = document.createElement("p");
-            author_name_element.classList = "metainfo";
-            article_date_element.classList = "metainfo"
+            author_name_element.classList = "document-metainfo";
+            article_date_element.classList = "document-metainfo"
             author_name_element.innerHTML = author_name;
             if (article_date.length === 0) {
                 article_date_element.innerHTML = "undated"

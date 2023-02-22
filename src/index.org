@@ -1,6 +1,7 @@
+#+TITLE: Home
 
 #+BEGIN_EXPORT html
-<div id="inline-logo">
+<div id="inline-logo" style="margin-top: 5em; margin-bottom: 5em; text-align: center; width: 50%; max-width: 30ch; margin-inline: auto;">
   <object width="100%" data="/res/site_logo.svg"></object>
 </div>
 #+END_EXPORT

@@ -226,40 +226,40 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
 
 #+begin_src emacs-lisp
 (setq org-html-preamble
-"<div class=\"header\">
-  <div class=\"main-header-line\">
+"<div id=\"header\">
+  <div id=\"main-header-line\">
     <div class=\"justify-items content-width\">
-      <div class=\"justify-items site-banner\">
-        <div id=\"site_icon_container\">
+      <div id=\"site-banner\" class=\"justify-items\">
+        <div id=\"site-banner-icon-container\">
             <object
             id=\"site_icon\"
             data=\"/res/site_logo.svg\"
             type=\"image/svg+xml\"
-            height=\"30px\"
+            height=\"100%%\"
             ></object>
         </div>
-        <a href=\"/\">alexneville.co.uk</a>
+        <a id=\"site-banner-link\" href=\"/\">alexneville.co.uk</a>
       </div>
-      <div class=\"page-controls\">
-        <button id=\"theme_switch_button\" type=\"button\">
+      <div id=\"page-controls\">
+        <button id=\"theme-switch-button\" type=\"button\">
           <object
-            id=\"theme_switch_icon\"
+            id=\"theme-switch-icon\"
             data=\"/res/theme_switch_light.svg\"
             type=\"image/svg+xml\"
             height=\"100%%\"
           ></object>
         </button>
-        <button id=\"page_start_button\" type=\"button\">
+        <button id=\"page-start-button\" type=\"button\">
           <object
-            id=\"page_start_icon\"
+            id=\"page-start-icon\"
             data=\"/res/up_triangle_light.svg\"
             type=\"image/svg+xml\"
             height=\"100%%\"
           ></object>
         </button>
-        <button id=\"menu_button\" type=\"button\">
+        <button id=\"menu-button\" type=\"button\">
           <object
-            id=\"menu_icon\"
+            id=\"menu-icon\"
             data=\"/res/menu_icon_light.svg\"
             type=\"image/svg+xml\"
             height=\"100%%\"
@@ -268,7 +268,7 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
       </div>
     </div>
   </div>
-  <div id=\"dropdown\">
+  <div id=\"dropdown-line\">
     <div class=\"content-width\">
       <ul>
         <li><a href=\"/index.html\">Home</a></li>
@@ -277,8 +277,8 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
       </ul>
     </div>
   </div>
-  <div class=\"breadcrumb-line\">
-    <div id=\"breadcrumbs\" class=\"content-width\">
+  <div id=\"breadcrumb-line\">
+    <div id=\"breadcrumb-parts\" class=\"content-width\">
       <a href=\"/index.html\">~/</a>
     </div>
   </div>
@@ -289,8 +289,8 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
 
 #+begin_src emacs-lisp
 (setq org-html-postamble
-"<p id=\"author_name\">%a</p>
-<p id=\"article_date\">%d</p>
+"<p id=\"author-name\">%a</p>
+<p id=\"article-date\">%d</p>
 <div class=\"footer\">
   <div class=\"content-width\">
     <p>Copyright &copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GNU GPL), per the <a href=\"/license.html\">content license</a>.</p>

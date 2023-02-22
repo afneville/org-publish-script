@@ -1,0 +1,5 @@
+#+TITLE: Error 404
+
+#+BEGIN_EXPORT html
+<h1>Error 404 - Resource Not Found</h1>
+#+END_EXPORT
