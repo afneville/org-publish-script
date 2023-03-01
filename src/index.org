@@ -10,3 +10,4 @@ Hello, my name is Alex. I am a first-year undergraduate Computer Science student
 
 - [[https://github.com/alexanderneville][Project Portfolio]]
 - [[./blog/index.org][Blog/Documentation]]
+- [[https://alexneville.co.uk/start.html][Start Page]]

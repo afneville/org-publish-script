@@ -206,18 +206,19 @@ Very basic MathJax 2 configuration.
 Additional lines for the head of each exported document.
 
 #+begin_src emacs-lisp
-(setq org-html-head-extra
-"<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
-<link href=\"/res/light.css\" rel=\"stylesheet\" id=\"light-stylesheet\" />
-<link
-  href=\"/res/dark.css\"
-  rel=\"stylesheet alternate\"
-  id=\"dark-stylesheet\"
-/>
-<link href=\"/res/style.css\" rel=\"stylesheet\" />
-<link rel=\"icon\" href=\"/res/site_logo.svg\" />
-<script src=\"/res/script.js\" defer></script>")
+  (setq org-html-head-extra
+        "
+  <link rel=\"stylesheet\" href=\"https://cdn.alexneville.co.uk/fontawesome/css/all.min.css\" />
+
+    <link href=\"/res/light.css\" rel=\"stylesheet\" id=\"light-stylesheet\" />
+    <link
+      href=\"/res/dark.css\"
+      rel=\"stylesheet alternate\"
+      id=\"dark-stylesheet\"
+    />
+    <link href=\"/res/style.css\" rel=\"stylesheet\" />
+    <link rel=\"icon\" href=\"/res/site_logo.svg\" />
+    <script src=\"/res/script.js\" defer></script>")
 #+end_src
 
 *** Preamble
@@ -225,78 +226,63 @@ Additional lines for the head of each exported document.
 The preamble is the HTML inserted at the beginning of each HTML document. This includes the site header.
 
 #+begin_src emacs-lisp
-(setq org-html-preamble
-"<div id=\"header\">
-  <div id=\"main-header-line\">
-    <div class=\"justify-items content-width\">
-      <div id=\"site-banner\" class=\"justify-items\">
-        <div id=\"site-banner-icon-container\">
-            <object
-            id=\"site_icon\"
-            data=\"/res/site_logo.svg\"
-            type=\"image/svg+xml\"
-            height=\"100%%\"
-            ></object>
+  (setq org-html-preamble
+        "<div id=\"header\">
+      <div id=\"main-header-line\">
+        <div class=\"justify-items content-width\">
+          <div id=\"site-banner\" class=\"justify-items\">
+            <div id=\"site-banner-icon-container\">
+                <object
+                id=\"site_icon\"
+                data=\"/res/site_logo.svg\"
+                type=\"image/svg+xml\"
+                height=\"100%%\"
+                ></object>
+            </div>
+            <a id=\"site-banner-link\" href=\"/\">alexneville.co.uk</a>
+          </div>
+          <div id=\"page-controls\">
+            <button id=\"page-start-button\" type=\"button\">
+                <i class=\"fa-solid fa-angles-up\"></i>
+            </button>
+            <button id=\"theme-switch-button\" type=\"button\">
+                <i class=\"fa-solid fa-circle-half-stroke\"></i>
+            </button>
+            <button id=\"menu-button\" type=\"button\">
+                <i class=\"fa-solid fa-bars\"></i>
+            </button>
+          </div>
         </div>
-        <a id=\"site-banner-link\" href=\"/\">alexneville.co.uk</a>
       </div>
-      <div id=\"page-controls\">
-        <button id=\"theme-switch-button\" type=\"button\">
-          <object
-            id=\"theme-switch-icon\"
-            data=\"/res/theme_switch_light.svg\"
-            type=\"image/svg+xml\"
-            height=\"100%%\"
-          ></object>
-        </button>
-        <button id=\"page-start-button\" type=\"button\">
-          <object
-            id=\"page-start-icon\"
-            data=\"/res/up_triangle_light.svg\"
-            type=\"image/svg+xml\"
-            height=\"100%%\"
-          ></object>
-        </button>
-        <button id=\"menu-button\" type=\"button\">
-          <object
-            id=\"menu-icon\"
-            data=\"/res/menu_icon_light.svg\"
-            type=\"image/svg+xml\"
-            height=\"100%%\"
-          ></object>
-        </button>
+      <div id=\"dropdown-line\">
+        <div id=\"dropdown-menu-container\" class=\"content-width\">
+          <ul>
+            <li><a href=\"/index.html\"><i class=\"fa-regular fa-user\"></i><p>Home</p></a></li>
+            <li><a href=\"/license.html\"><i class=\"fa-regular fa-file-lines\"></i><p>License</p></a></li>
+            <li><a href=\"/blog/\"><i class=\"fa-regular fa-comment\"></i><p>Blog</p></a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
-  <div id=\"dropdown-line\">
-    <div class=\"content-width\">
-      <ul>
-        <li><a href=\"/index.html\">Home</a></li>
-        <li><a href=\"/license.html\">License</a></li>
-        <li><a href=\"/blog/\">Blog</a></li>
-      </ul>
-    </div>
-  </div>
-  <div id=\"breadcrumb-line\">
-    <div id=\"breadcrumb-parts\" class=\"content-width\">
-      <a href=\"/index.html\">~/</a>
-    </div>
-  </div>
-</div>")
+      <div id=\"breadcrumb-line\">
+        <div id=\"breadcrumb-parts\" class=\"content-width\">
+          <a href=\"/index.html\">~/</a>
+        </div>
+      </div>
+    </div>")
 #+end_src
 
 *** Postamble
 
 #+begin_src emacs-lisp
-(setq org-html-postamble
-"<p id=\"author-name\">%a</p>
-<p id=\"article-date\">%d</p>
-<div class=\"footer\">
-  <div class=\"content-width\">
-    <p>Copyright &copy 2023 Alexander Neville. Original content is distributed under copyleft terms (CC BY-SA / GNU GPL), per the <a href=\"/license.html\">content license</a>.</p>
-    <p>Made with %c @ (%T), <a href=\"https://github.com/alexanderneville/website\">view source</a>.</p>
-  </div>
-</div>")
+  (setq org-html-postamble
+  "<p id=\"author-name\">%a</p>
+  <p id=\"article-date\">%d</p>
+  <div class=\"footer\">
+    <div class=\"content-width\">
+      <p>Copyright &copy 2023 Alexander Neville, <a href=\"/license.html\">(CC BY-SA / GNU GPL)</a>.</p>
+  <p>Made with %c @ (%T), <a href=\"https://github.com/alexanderneville/website\">view source</a>.</p>
+    </div>
+  </div>")
 #+end_src
 
 ** Publishing
