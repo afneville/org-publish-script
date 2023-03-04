@@ -99,29 +99,6 @@ body {
   margin-bottom: 0.75em;
 }
 
-#dropdown-menu-container a {
-  color: var(--fg);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-#dropdown-menu-container a p {
-  margin: 0.25em; 
-  color: var(--blue);
-}
-
-@media (hover: hover) {
-  #dropdown-menu-container a:hover p {
-    text-decoration: underline;
-  }
-}
-
-#dropdown-menu-container a i {
-  text-align: center;
-  width: 2em; 
-}
-
 #breadcrumb-line {
   background-color: var(--bg-accent);
   padding: 0.25em 0;
@@ -185,15 +162,18 @@ body {
 }
 
 #table-of-contents {
-  margin: 1em 0.5em;
+  margin-left: 0.5em;
+  margin-bottom: 2.5rem;
   border-left: 1px solid var(--fg-accent);
   padding-left: 0.5em;
   padding-bottom: 0.1875em;
+  /* display: none; */
 }
 
 #table-of-contents h2 {
   margin-bottom: 0em;
   margin-top: 0em;
+  padding-bottom: 0;
   border-bottom: none;
 }
 
@@ -202,12 +182,9 @@ body {
   margin-left: 0.5em;
 }
 
-#preamble ul {
-  list-style: none;
-}
-
 #preamble ul,
 #table-of-contents ul {
+  list-style: none;
   list-style-position: inside;
   padding-left: 0;
   margin: 0 0;
@@ -228,9 +205,16 @@ body {
 }
 
 .document-metainfo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.document-metainfo p {
   color: var(--fg-dark);
   margin: 0;
   padding: 0;
+  /* text-align: right; */
+  /* font-size: 0.75em */
 }
 
 .footer {
@@ -243,6 +227,8 @@ body {
   /* font-family: IBMPlexMono, 'Courier New', Courier, monospace; */
   font-size: 0.75em;
   color: var(--fg-dark);
+  line-height: normal;
+  margin: 0.75em 0;
   /* margin-inline: 6em; */
 }
 
@@ -275,6 +261,7 @@ a:active {
 :is(h1, h2, h3, h4, h5, h6) > a,
 :is(h1, h2, h3, h4, h5, h6) > a:link,
 :is(h1, h2, h3, h4, h5, h6) > a:visited {
+  font-family: IBMPlexSerif;
   color: var(--fg);
   text-decoration: none;
 }
@@ -332,8 +319,14 @@ p {
   line-height: 1.25em;
 }
 
+ol,
 ul {
   padding-left: 2em;
+}
+
+ol > li::marker {
+  font-weight: bold;
+  font-family: IBMPlexSerif;
 }
 
 li:not(:last-child) {
@@ -351,7 +344,49 @@ li:not(:last-child) {
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
+  font-family: IBMPlexSerif;
   min-width: 100%;
   padding-bottom: 0.125em;
   border-bottom: 1px solid var(--fg-accent);
+}
+
+.title {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.icon-link-list {
+  margin-top: 2em;
+  list-style-type: none;
+  list-style-position: inside;
+  line-height: normal;
+}
+
+.icon-link-list {
+  padding-left: 0;
+}
+
+.icon-link-list a {
+  text-decoration: none;
+}
+.icon-link-list a p {
+  display: inline;
+  color: var(--blue);
+  margin: 0.25em;
+}
+.icon-link-list a i {
+  width: 2em;
+  text-align: center;
+}
+.icon-link-list a p {
+  color: var(--blue);
+  margin: 0.25em;
+}
+@media (hover: hover) {
+  .icon-link-list a:hover p {
+    text-decoration: underline
+  }
+}
+.icon-link-list a:active p {
+  text-decoration: underline
 }

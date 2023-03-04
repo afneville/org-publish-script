@@ -8,6 +8,11 @@
 
 Hello, my name is Alex. I am a first-year undergraduate Computer Science student at the University of Birmingham in the UK. I am currently learning about programming and software engineering, focusing on the C, C++ and Python languages. I am particularly interested in /Free and Open Source/ software and I am learning to use Linux and some of the core Unix utilities at the same time.
 
-- [[https://github.com/alexanderneville][Project Portfolio]]
-- [[./blog/index.org][Blog/Documentation]]
-- [[https://alexneville.co.uk/start.html][Start Page]]
+#+BEGIN_EXPORT html
+<ul class="icon-link-list">
+    <li><a href="https://github.com/alexanderneville"><i class="fa-solid fa-code-branch"></i><p>Project Portfolio</p></a></li>
+    <li><a href="./blog/index.html"><i class="fa-regular fa-comment"></i><p>Blog/Documentation</p></a></li>
+    <li><a href="https://alexneville.co.uk/start.html"><i class="fa-solid fa-link"></i><p>Start Page</p></a></li>
+</ul>
+#+END_EXPORT
+

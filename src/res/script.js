@@ -101,10 +101,12 @@ function process_path() {
       author_name = document.getElementById("author-name").innerHTML;
       article_date = document.getElementById("article-date").innerHTML;
       title = document.getElementsByClassName("title")[0];
+      metainfo_div = document.createElement("div");
+      metainfo_div.classList = "document-metainfo"
       author_name_element = document.createElement("p");
       article_date_element = document.createElement("p");
-      author_name_element.classList = "document-metainfo";
-      article_date_element.classList = "document-metainfo";
+      // author_name_element.classList = "document-metainfo";
+      // article_date_element.classList = "document-metainfo";
       author_name_element.innerHTML = author_name;
       if (article_date.length === 0) {
         article_date_element.innerHTML = "undated";
@@ -112,8 +114,15 @@ function process_path() {
       } else {
         article_date_element.innerHTML = article_date.split(" ")[1];
       }
-      title.parentNode.insertBefore(article_date_element, title.nextSibling);
-      title.parentNode.insertBefore(author_name_element, title.nextSibling);
+      // title.parentNode.insertBefore(article_date_element, title.nextSibling);
+      // title.parentNode.insertBefore(author_name_element, title.nextSibling);
+      // title.parentNode.insertBefore(author_name_element, title);
+      // title.parentNode.insertBefore(article_date_element, title);
+      metainfo_div.appendChild(author_name_element);
+      metainfo_div.appendChild(article_date_element);
+      // title.parentNode.insertBefore(metainfo_div, title);
+      title.parentNode.insertBefore(metainfo_div, title.nextSibling);
+
     }
   }
 }

@@ -256,7 +256,7 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
       </div>
       <div id=\"dropdown-line\">
         <div id=\"dropdown-menu-container\" class=\"content-width\">
-          <ul>
+          <ul class=\"icon-link-list\">
             <li><a href=\"/index.html\"><i class=\"fa-regular fa-user\"></i><p>Home</p></a></li>
             <li><a href=\"/license.html\"><i class=\"fa-regular fa-file-lines\"></i><p>License</p></a></li>
             <li><a href=\"/blog/\"><i class=\"fa-regular fa-comment\"></i><p>Blog</p></a></li>
