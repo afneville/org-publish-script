@@ -7,15 +7,15 @@ This repository contains the full source code for [[https://alexneville.co.uk][m
 To build a version of the site with the current repository contents, recent versions of both /GNU Emacs/ and /org mode/ are required:
 
 #+begin_src text
-emacs >= 28.1
-org   >=  9.0
+  emacs >= 28.1
+  org   >=  9.0
 #+end_src
 
 The export script will build the site under =out/html/=.
 
 #+begin_src sh
-chmod u+x export.sh
-./export.sh
+  chmod u+x export.sh
+  ./export.sh
 #+end_src
 
 * Export Configuration
@@ -27,47 +27,47 @@ Rather than requiring an existing emacs environment, the export script will star
 Require the exporters.
 
 #+begin_src emacs-lisp
-(require 'ox-html)
-(require 'ox-latex)
-(require 'ox-publish)
+  (require 'ox-html)
+  (require 'ox-latex)
+  (require 'ox-publish)
 #+end_src
 
 Set some default variables (affecting both exporters)
 
 #+begin_src emacs-lisp
-(setq
- user-full-name "Alexander Neville"
- org-export-headline-levels 3
- org-export-with-archived-trees nil
- org-export-exclude-tags nil
- org-export-default-language nil
- org-export-preserve-breaks nil
- org-export-with-section-numbers nil
- org-export-select-tags nil
- org-export-with-author nil
- org-export-with-broken-links t
- org-export-with-clocks nil
- org-export-with-creator nil
- org-export-with-date nil
- org-export-with-drawers nil
- org-export-with-email nil
- org-export-with-emphasize t
- org-export-with-fixed-width nil
- org-export-with-footnotes nil
- org-export-with-latex t
- org-export-with-planning nil
- org-export-with-priority nil
- org-export-with-properties nil
- org-export-with-special-strings nil
- org-export-with-sub-superscripts '{}
- org-export-with-tables t
- org-export-with-tags nil
- org-export-with-tasks nil
- org-export-with-timestamps nil
- org-export-with-title nil
- org-export-with-toc nil
- org-export-with-todo-keywords nil
- )
+  (setq
+   user-full-name "Alexander Neville"
+   org-export-headline-levels 3
+   org-export-with-archived-trees nil
+   org-export-exclude-tags nil
+   org-export-default-language nil
+   org-export-preserve-breaks nil
+   org-export-with-section-numbers nil
+   org-export-select-tags nil
+   org-export-with-author nil
+   org-export-with-broken-links t
+   org-export-with-clocks nil
+   org-export-with-creator nil
+   org-export-with-date nil
+   org-export-with-drawers nil
+   org-export-with-email nil
+   org-export-with-emphasize t
+   org-export-with-fixed-width nil
+   org-export-with-footnotes nil
+   org-export-with-latex t
+   org-export-with-planning nil
+   org-export-with-priority nil
+   org-export-with-properties nil
+   org-export-with-special-strings nil
+   org-export-with-sub-superscripts '{}
+   org-export-with-tables t
+   org-export-with-tags nil
+   org-export-with-tasks nil
+   org-export-with-timestamps nil
+   org-export-with-title nil
+   org-export-with-toc nil
+   org-export-with-todo-keywords nil
+   )
 #+end_src
 
 ** Latex Settings
@@ -75,101 +75,101 @@ Set some default variables (affecting both exporters)
 Configuration for the Latex back-end. First, set the value of some variables.
 
 #+begin_src emacs-lisp
-(setq org-latex-listings 'minted
-      org-export-in-background t
-      org-latex-compiler "pdflatex"
-      org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+  (setq org-latex-listings 'minted
+	org-export-in-background t
+	org-latex-compiler "pdflatex"
+	org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
 
-(setq
- chapter-redef
- "\\patchcmd{\\chapter}{\\thispagestyle{plain}}{\\thispagestyle{fancy}}{}{}
-\\makeatletter
-\\def\\@makechapterhead#1{
-  \\vspace*{50\\p@}
-  {\\parindent \\z@ \\raggedright \\normalfont
-    \\ifnum \\c@secnumdepth >\\m@ne
-        \\huge\\bfseries \\@chapapp\\space \\thechapter
-        \\Huge\\bfseries \\thechapter.\\space%
-        \\par\\nobreak
-        \\vskip 20\\p@
-    \\fi
-    \\interlinepenalty\\@M
-    \\Huge \\bfseries #1\\par\\nobreak
-    \\vskip 40\\p@
-  }}
-\\makeatother\n"
- report-fancyheader-def
- "\\usepackage{fancyhdr}
-\\pagestyle{fancy}
-\\renewcommand{\\sectionmark}[1]{\\markright{\\thesection~- ~#1}}
-\\renewcommand{\\chaptermark}[1]{\\markboth{\\chaptername~\\thechapter. \\textit{#1}}{}}
-\\fancyhf{}
-\\rfoot{page \\textbf{\\thepage}}
-\\lfoot{\\nouppercase{\\leftmark}}
-\\renewcommand{\\headrulewidth}{0pt}
-\\renewcommand{\\footrulewidth}{0.4pt}\n"
- article-fancyheader-def
- "\\usepackage{fancyhdr}
-\\pagestyle{fancy}
-\\fancyhf{}
-\\rfoot{page \\textbf{\\thepage}}
-\\lfoot{\\nouppercase{\\leftmark}}
-\\renewcommand{\\headrulewidth}{0pt}
-\\renewcommand{\\footrulewidth}{0.4pt}\n"
- common-head
- "\\usepackage{svg}
-\\svgsetup{inkscapelatex=false}
-\\usepackage{blindtext}
-\\usepackage{tcolorbox}
-\\usepackage{etoolbox}
-\\hypersetup{hidelinks}
-\\usemintedstyle{bw}
-\\setminted{autogobble=true, breaklines=true, breakbytokenanywhere=true, fontsize=\\small, xleftmargin=1cm, xrightmargin=1cm}
-\\usepackage[indent=0.5cm]{parskip}
-\\usepackage[a4paper, includefoot, margin=2.54cm]{geometry}\n"
- default-head-setup
- "\\usepackage[utf8]{inputenc}
-\\usepackage{libertine}
-\\usepackage{libertinust1math}
-\\usepackage[T1]{fontenc}
-\\usepackage{graphicx}
-\\usepackage{longtable}
-\\usepackage{wrapfig}
-\\usepackage{rotating}
-\\usepackage[normalem]{ulem}
-\\usepackage{amsmath}
-\\usepackage{amssymb}
-\\usepackage{capt-of}
-\\usepackage{hyperref}
-\\usepackage{minted}\n"
- )
+  (setq
+   chapter-redef
+   "\\patchcmd{\\chapter}{\\thispagestyle{plain}}{\\thispagestyle{fancy}}{}{}
+  \\makeatletter
+  \\def\\@makechapterhead#1{
+    \\vspace*{50\\p@}
+    {\\parindent \\z@ \\raggedright \\normalfont
+      \\ifnum \\c@secnumdepth >\\m@ne
+	  \\huge\\bfseries \\@chapapp\\space \\thechapter
+	  \\Huge\\bfseries \\thechapter.\\space%
+	  \\par\\nobreak
+	  \\vskip 20\\p@
+      \\fi
+      \\interlinepenalty\\@M
+      \\Huge \\bfseries #1\\par\\nobreak
+      \\vskip 40\\p@
+    }}
+  \\makeatother\n"
+   report-fancyheader-def
+   "\\usepackage{fancyhdr}
+  \\pagestyle{fancy}
+  \\renewcommand{\\sectionmark}[1]{\\markright{\\thesection~- ~#1}}
+  \\renewcommand{\\chaptermark}[1]{\\markboth{\\chaptername~\\thechapter. \\textit{#1}}{}}
+  \\fancyhf{}
+  \\rfoot{page \\textbf{\\thepage}}
+  \\lfoot{\\nouppercase{\\leftmark}}
+  \\renewcommand{\\headrulewidth}{0pt}
+  \\renewcommand{\\footrulewidth}{0.4pt}\n"
+   article-fancyheader-def
+   "\\usepackage{fancyhdr}
+  \\pagestyle{fancy}
+  \\fancyhf{}
+  \\rfoot{page \\textbf{\\thepage}}
+  \\lfoot{\\nouppercase{\\leftmark}}
+  \\renewcommand{\\headrulewidth}{0pt}
+  \\renewcommand{\\footrulewidth}{0.4pt}\n"
+   common-head
+   "\\usepackage{svg}
+  \\svgsetup{inkscapelatex=false}
+  \\usepackage{blindtext}
+  \\usepackage{tcolorbox}
+  \\usepackage{etoolbox}
+  \\hypersetup{hidelinks}
+  \\usemintedstyle{bw}
+  \\setminted{autogobble=true, breaklines=true, breakbytokenanywhere=true, fontsize=\\small, xleftmargin=1cm, xrightmargin=1cm}
+  \\usepackage[indent=0.5cm]{parskip}
+  \\usepackage[a4paper, includefoot, margin=2.54cm]{geometry}\n"
+   default-head-setup
+   "\\usepackage[utf8]{inputenc}
+  \\usepackage{libertine}
+  \\usepackage{libertinust1math}
+  \\usepackage[T1]{fontenc}
+  \\usepackage{graphicx}
+  \\usepackage{longtable}
+  \\usepackage{wrapfig}
+  \\usepackage{rotating}
+  \\usepackage[normalem]{ulem}
+  \\usepackage{amsmath}
+  \\usepackage{amssymb}
+  \\usepackage{capt-of}
+  \\usepackage{hyperref}
+  \\usepackage{minted}\n"
+   )
 #+end_src
 
 Create some latex classes, add them to the list of supported classes and set the default class to one which was just created.
 
 #+begin_src emacs-lisp
-(setq
- custom-article '(("\\section{%s}" . "\\section*{%s}")
-                  ("\\subsection{%s}" . "\\subsection*{%s}")
-                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
- short-report    (append '(("\\chapter{%s}" . "\\chapter*{%s}")) custom-article)
- long-report     (append '(("\\part{%s}" . "\\part*{%s}")) short-report)
- )
+  (setq
+   custom-article '(("\\section{%s}" . "\\section*{%s}")
+		    ("\\subsection{%s}" . "\\subsection*{%s}")
+		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+   short-report    (append '(("\\chapter{%s}" . "\\chapter*{%s}")) custom-article)
+   long-report     (append '(("\\part{%s}" . "\\part*{%s}")) short-report)
+   )
 
-(setq report-common-header-string (concat "\\documentclass{report}\n[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n" default-head-setup chapter-redef common-head report-fancyheader-def "[EXTRA]"))
-(add-to-list 'short-report report-common-header-string)
-(add-to-list 'long-report report-common-header-string)
-(add-to-list 'custom-article (concat "\\documentclass{article}\n[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n" default-head-setup common-head article-fancyheader-def "[EXTRA]"))
-(add-to-list 'short-report "short-report")
-(add-to-list 'long-report "long-report")
-(add-to-list 'custom-article "custom-article")
+  (setq report-common-header-string (concat "\\documentclass{report}\n[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n" default-head-setup chapter-redef common-head report-fancyheader-def "[EXTRA]"))
+  (add-to-list 'short-report report-common-header-string)
+  (add-to-list 'long-report report-common-header-string)
+  (add-to-list 'custom-article (concat "\\documentclass{article}\n[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n" default-head-setup common-head article-fancyheader-def "[EXTRA]"))
+  (add-to-list 'short-report "short-report")
+  (add-to-list 'long-report "long-report")
+  (add-to-list 'custom-article "custom-article")
 
-(with-eval-after-load 'ox-latex
-  (add-to-list 'org-latex-classes long-report)
-  (add-to-list 'org-latex-classes short-report)
-  (add-to-list 'org-latex-classes custom-article))
+  (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes long-report)
+    (add-to-list 'org-latex-classes short-report)
+    (add-to-list 'org-latex-classes custom-article))
 
-(setq org-latex-default-class "custom-article")
+  (setq org-latex-default-class "custom-article")
 #+end_src
 
 ** HTML Settings
@@ -177,37 +177,55 @@ Create some latex classes, add them to the list of supported classes and set the
 Set the value of some variables.
 
 #+begin_src emacs-lisp
-(setq org-html-self-link-headlines t
-      org-html-metadata-timestamp-format "%H:%M:%S %d/%m/%Y"
-      org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org mode</a> 9.5.5"
-      org-html-head-include-default-style nil
-      org-html-head-include-scripts nil
-      ;; org-html-prefer-user-labels t
-      )
+  (setq org-html-doctype "html5" 
+	org-html-self-link-headlines t
+	org-html-metadata-timestamp-format "%H:%M:%S %d/%m/%Y"
+	org-html-creator-string "<a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> 28.2 + <a href=\"https://orgmode.org\">Org mode</a> 9.5.5"
+	org-html-head-include-default-style nil
+	org-html-head-include-scripts nil
+	;; org-html-prefer-user-labels t
+	)
 #+end_src
 
 
-Very basic MathJax 2 configuration.
+Very basic MathJax 2 configuration. This is not used as I overwrite the mathjax template in the block below.
 
 #+begin_src emacs-lisp
-(setq org-html-mathjax-options 
-      '((path "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
-        (scale "100")
-        (align "center")
-        (font "STIX-Web")
-        (linebreaks "false")
-        (autonumber "AMS")
-        (indent "0em")
-        (multlinewidth "85%")
-        (tagindent ".8em")
-        (tagside "right")))
+  (setq org-html-mathjax-options 
+	'((path "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML")
+	  (scale "100")
+	  (align "center")
+	  (font "STIX-Web")
+	  (linebreaks "false")
+	  (autonumber "AMS")
+	  (indent "0em")
+	  (multlinewidth "85%")
+	  (tagindent ".8em")
+	  (tagside "right")))
+#+end_src
+
+Overwrite the template for inserting
+#+begin_src emacs-lisp
+  (setq org-html-mathjax-template "<script>
+  MathJax = {
+    // tex: {
+      // inlineMath: [['$', '$'], ['\\(', '\\)']]
+    // },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+  </script>
+  <script type=\"text/javascript\" id=\"MathJax-script\" async
+    src=\"https://cdn.alexneville.co.uk/mathjax/tex-svg.js\">
+  </script>")
 #+end_src
 
 Additional lines for the head of each exported document.
 
 #+begin_src emacs-lisp
   (setq org-html-head-extra
-        "
+	"
   <link rel=\"stylesheet\" href=\"https://cdn.alexneville.co.uk/fontawesome/css/all.min.css\" />
 
     <link href=\"/res/light.css\" rel=\"stylesheet\" id=\"light-stylesheet\" />
@@ -227,46 +245,45 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
 
 #+begin_src emacs-lisp
   (setq org-html-preamble
-        "<div id=\"header\">
+	"<div id=\"header\">
       <div id=\"main-header-line\">
-        <div class=\"justify-items content-width\">
-          <div id=\"site-banner\" class=\"justify-items\">
-            <div id=\"site-banner-icon-container\">
-                <object
-                id=\"site_icon\"
-                data=\"/res/site_logo.svg\"
-                type=\"image/svg+xml\"
-                height=\"100%%\"
-                ></object>
-            </div>
-            <a id=\"site-banner-link\" href=\"/\">alexneville.co.uk</a>
-          </div>
-          <div id=\"page-controls\">
-            <button id=\"page-start-button\" type=\"button\">
-                <i class=\"fa-solid fa-angles-up\"></i>
-            </button>
-            <button id=\"theme-switch-button\" type=\"button\">
-                <i class=\"fa-solid fa-circle-half-stroke\"></i>
-            </button>
-            <button id=\"menu-button\" type=\"button\">
-                <i class=\"fa-solid fa-bars\"></i>
-            </button>
-          </div>
-        </div>
+	<div class=\"justify-items content-width\">
+	  <div id=\"site-banner\" class=\"justify-items\">
+	    <div id=\"site-banner-icon-container\">
+		<object
+		id=\"site_icon\"
+		data=\"/res/site_logo.svg\"
+		type=\"image/svg+xml\"
+		></object>
+	    </div>
+	    <a id=\"site-banner-link\" href=\"/\">alexneville.co.uk</a>
+	  </div>
+	  <div id=\"page-controls\">
+	    <button id=\"page-start-button\" type=\"button\">
+		<i class=\"fa-solid fa-angles-up\"></i>
+	    </button>
+	    <button id=\"theme-switch-button\" type=\"button\">
+		<i class=\"fa-solid fa-circle-half-stroke\"></i>
+	    </button>
+	    <button id=\"menu-button\" type=\"button\">
+		<i class=\"fa-solid fa-bars\"></i>
+	    </button>
+	  </div>
+	</div>
       </div>
       <div id=\"dropdown-line\">
-        <div id=\"dropdown-menu-container\" class=\"content-width\">
-          <ul class=\"icon-link-list\">
-            <li><a href=\"/index.html\"><i class=\"fa-regular fa-user\"></i><p>Home</p></a></li>
-            <li><a href=\"/license.html\"><i class=\"fa-regular fa-file-lines\"></i><p>License</p></a></li>
-            <li><a href=\"/blog/\"><i class=\"fa-regular fa-comment\"></i><p>Blog</p></a></li>
-          </ul>
-        </div>
+	<div id=\"dropdown-menu-container\" class=\"content-width\">
+	  <ul class=\"icon-link-list\">
+	    <li><a href=\"/index.html\"><i class=\"fa-regular fa-user\"></i><p>Home</p></a></li>
+	    <li><a href=\"/license.html\"><i class=\"fa-regular fa-file-lines\"></i><p>License</p></a></li>
+	    <li><a href=\"/blog/\"><i class=\"fa-regular fa-comment\"></i><p>Blog</p></a></li>
+	  </ul>
+	</div>
       </div>
       <div id=\"breadcrumb-line\">
-        <div id=\"breadcrumb-parts\" class=\"content-width\">
-          <a href=\"/index.html\">~/</a>
-        </div>
+	<div id=\"breadcrumb-parts\" class=\"content-width\">
+	  <a href=\"/index.html\">~/</a>
+	</div>
       </div>
     </div>")
 #+end_src
@@ -275,7 +292,7 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
 
 #+begin_src emacs-lisp
   (setq org-html-postamble
-  "<p id=\"author-name\">%a</p>
+	"<p id=\"author-name\">%a</p>
   <p id=\"article-date\">%d</p>
   <div class=\"footer\">
     <div class=\"content-width\">
@@ -300,66 +317,66 @@ Create the list of exporters and populate the contents of the output directory.
 The static index pages located at =/= do not require titles or *TOCs*.
 
 #+begin_src emacs-lisp
-(setq main_html
-        '("main_html"
-         :recursive nil
-         :base-directory "./src"
-         :publishing-directory "./out/html"
-         :base-extension "org"
-         :publishing-function org-html-publish-to-html
-	       :with-title nil
-         :with-toc nil
-         :headline-levels 5
-         )
-)
+  (setq main_html
+	'("main_html"
+	  :recursive nil
+	  :base-directory "./src"
+	  :publishing-directory "./out/html"
+	  :base-extension "org"
+	  :publishing-function org-html-publish-to-html
+	  :with-title nil
+	  :with-toc nil
+	  :headline-levels 5
+	  )
+	)
 #+end_src
 
 Recursively export the contents of the blog directory.
 
 #+begin_src emacs-lisp
-(setq blog_html
-      '("blog_html"
-         :recursive t
-         :base-directory "./src/blog"
-         :publishing-directory "./out/html/blog"
-         :base-extension "org"
-         :publishing-function org-html-publish-to-html
-         :with-title t
-         :with-toc 1
-         :headline-levels 5
-         :exclude "tables/"
-         ))
+  (setq blog_html
+	'("blog_html"
+	  :recursive t
+	  :base-directory "./src/blog"
+	  :publishing-directory "./out/html/blog"
+	  :base-extension "org"
+	  :publishing-function org-html-publish-to-html
+	  :with-title t
+	  :with-toc 1
+	  :headline-levels 5
+	  :exclude "tables/"
+	  ))
 
 #+end_src
 
 Finally, export the site resources. This step is just copying the files into the output directory.
 
 #+begin_src emacs-lisp
-(setq main_res
-        '("main_html_resources"
-         :recursive t
-         :base-directory "./src/res"
-         :publishing-directory "./out/html/res"
-         :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
-         :publishing-function org-publish-attachment)
+  (setq main_res
+	'("main_html_resources"
+	  :recursive t
+	  :base-directory "./src/res"
+	  :publishing-directory "./out/html/res"
+	  :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
+	  :publishing-function org-publish-attachment)
 
-      blog_res
-         '("blog_html_resources"
-         :recursive t
-         :base-directory "./src/blog/res"
-         :publishing-directory "./out/html/blog/res"
-         :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
-         :publishing-function org-publish-attachment))
+	blog_res
+	'("blog_html_resources"
+	  :recursive t
+	  :base-directory "./src/blog/res"
+	  :publishing-directory "./out/html/blog/res"
+	  :base-extension "pdf\\|jpg\\|gif\\|png\\|svg\\|css\\|js"
+	  :publishing-function org-publish-attachment))
 #+end_src
 
 *** Export
 
 #+begin_src emacs-lisp
-(setq org-publish-project-alist (append (list main_html) (list blog_html)  (list main_res) (list blog_res)))
+  (setq org-publish-project-alist (append (list main_html) (list blog_html)  (list main_res) (list blog_res)))
 #+end_src
 
 With initialisation complete, execute all the publishing functions.
 
 #+begin_src emacs-lisp
-(org-publish-all t)
+  (org-publish-all t)
 #+end_src

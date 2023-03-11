@@ -155,6 +155,10 @@ body {
   pointer-events: none;
 }
 
+#site_icon {
+  height: 100%;
+}
+
 #site-banner-icon-container {
   display: flex;
   height: 1.5em;
