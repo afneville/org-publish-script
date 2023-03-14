@@ -64,7 +64,18 @@ function scrollFunction() {
 }
 
 function prettyName(filename) {
-  return filename;
+  specialNames = ["dsa", "cs"];
+  var words = filename.split("-");
+  var string = "";
+  for ( var i = 0; i < words.length; i++) {
+    if (specialNames.includes(words[i])) {
+      string += words[i].toUpperCase()
+    } else {
+      string += words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+    string += " ";
+  }
+  return string.slice(0, -1);
 }
 
 function newDivider() {
@@ -87,31 +98,29 @@ function writeBreadcrumbs() {
   var pathname = location.pathname;
   var target = document.getElementById("breadcrumb-parts");
   pathname = pathname.slice(1, pathname.length); // strip the leading slash
-  var path_parts = pathname.split("/"); // divide into parts
+  var pathParts = pathname.split("/"); // divide into parts
   var link = "/"; // start building the link
-  if (path_parts.length > 1) {
+  if (pathParts.length > 1) {
     // if not the root directory
     // create link for each dir
-    for (var i = 0; i < path_parts.length - 1; i++) {
-      link += path_parts[i];
+    for (var i = 0; i < pathParts.length - 1; i++) {
+      link += pathParts[i];
       link += "/";
-      var new_link =
-        '<a href="' + link + '">' + prettyName(path_parts[i]) + " </a>";
+      var newLink = document.createElement("a");
+      newLink.href = link;
+      newLink.innerText = prettyName(pathParts[i]);
       target.appendChild(newDivider());
-      target.innerHTML += new_link;
+      target.appendChild(newLink);
     }
   }
-  var filename_index = path_parts.length - 1;
-  if (isIndexPage(path_parts) == false) {
-    link += path_parts[filename_index];
-    var new_link =
-      '<a href="' +
-      link +
-      '">' +
-      path_parts[filename_index].split(".")[0] +
-      "</a>";
+  var filenameIndex = pathParts.length - 1;
+  if (isIndexPage(pathParts) == false) {
+    link += pathParts[filenameIndex];
+    var newLink = document.createElement("a");
+    newLink.href = link;
+    newLink.innerText = prettyName(pathParts[filenameIndex].split(".")[0]);
     target.appendChild(newDivider());
-    target.innerHTML += new_link;
+    target.appendChild(newLink);
   }
 }
 

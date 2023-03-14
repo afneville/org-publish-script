@@ -116,10 +116,15 @@ body {
   font-size: 0.75rem;
   /* font-family: IBMPlexMono, 'Roboto Mono', 'Courier New', Courier, monospace; */
 }
-#breadcrumb-parts i {
+#breadcrumb-parts > i {
   margin-inline: 0.5em;
   font-size: 0.75em;
   color: var(--fg-dark);
+}
+
+#breadcrumb-parts a i {
+  color: var(--fg-dark);
+  margin-right: 0.25em;
 }
 
 #site-banner-link {
