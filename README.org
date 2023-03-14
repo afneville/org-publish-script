@@ -187,7 +187,6 @@ Set the value of some variables.
 	)
 #+end_src
 
-
 Very basic MathJax 2 configuration. This is not used as I overwrite the mathjax template in the block below.
 
 #+begin_src emacs-lisp
@@ -204,7 +203,8 @@ Very basic MathJax 2 configuration. This is not used as I overwrite the mathjax 
 	  (tagside "right")))
 #+end_src
 
-Overwrite the template for inserting
+Overwrite the template for inserting mathjax configuration. Use my own copy of the scripts.
+
 #+begin_src emacs-lisp
   (setq org-html-mathjax-template "<script>
   MathJax = {
@@ -282,7 +282,7 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
       </div>
       <div id=\"breadcrumb-line\">
 	<div id=\"breadcrumb-parts\" class=\"content-width\">
-	  <a href=\"/index.html\">~/</a>
+	  <a href=\"/index.html\">Home</a>
 	</div>
       </div>
     </div>")
