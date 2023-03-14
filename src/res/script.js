@@ -11,11 +11,11 @@ function light_theme() {
   var dark_stylesheet = document.getElementById("dark-stylesheet");
   disable_stylesheet(dark_stylesheet);
   enable_stylesheet(light_stylesheet);
-  // var moon = document.createElement("i");
-  // moon.classList = "fa-solid fa-moon";
-  // var node = document.getElementById("theme-switch-button");
-  // node.innerHTML = "";
-  // node.appendChild(moon);
+  var moon = document.createElement("i");
+  moon.classList = "fa-solid fa-moon";
+  var themeButton = document.getElementById("theme-switch-button");
+  themeButton.innerHTML = null;
+  themeButton.appendChild(moon);
 }
 
 function dark_theme() {
@@ -23,11 +23,11 @@ function dark_theme() {
   var dark_stylesheet = document.getElementById("dark-stylesheet");
   disable_stylesheet(light_stylesheet);
   enable_stylesheet(dark_stylesheet);
-  // var sun = document.createElement("i");
-  // sun.classList = "fa-solid fa-sun";
-  // var node = document.getElementById("theme-switch-button");
-  // node.innerHTML = "";
-  // node.appendChild(sun);
+  var sun = document.createElement("i");
+  sun.classList = "fa-regular fa-sun";
+  var themeButton = document.getElementById("theme-switch-button");
+  themeButton.innerHTML = null;
+  themeButton.appendChild(sun);
 }
 
 function switch_theme() {
@@ -102,7 +102,7 @@ function process_path() {
       article_date = document.getElementById("article-date").innerHTML;
       title = document.getElementsByClassName("title")[0];
       metainfo_div = document.createElement("div");
-      metainfo_div.classList = "document-metainfo"
+      metainfo_div.classList = "document-metainfo";
       author_name_element = document.createElement("p");
       article_date_element = document.createElement("p");
       // author_name_element.classList = "document-metainfo";
@@ -122,13 +122,12 @@ function process_path() {
       metainfo_div.appendChild(article_date_element);
       // title.parentNode.insertBefore(metainfo_div, title);
       title.parentNode.insertBefore(metainfo_div, title.nextSibling);
-
     }
   }
 }
 
-window.onscroll = function() {
-    scrollFunction();
+window.onscroll = function () {
+  scrollFunction();
 };
 
 function scrollFunction() {
@@ -142,7 +141,39 @@ function main() {
   process_path();
   var toc = document.getElementById("table-of-contents");
   if (toc) {
-    toc.getElementsByTagName("h2")[0].innerHTML = "Contents";
+    toc.getElementsByTagName("h2")[0].innerText = "Contents";
+  }
+  // var blocks = document.getElementsByClassName("src");
+  // for (var i = 0; i < blocks.length; i++) {
+  //   var icon = document.createElement("i");
+  //   icon.classList = "fa-regular fa-clipboard";
+  //   icon.style.position = "absolute"
+  //   icon.style.fontSize = "1rem";
+  //   icon.style.top = "0.5em";
+  //   icon.style.right = "0.5em";
+  //   blocks[i].appendChild(icon);
+  // }
+
+  let blocks = document.querySelectorAll("pre");
+  blocks.forEach((block) => {
+    if (navigator.clipboard) {
+      let icon = document.createElement("i");
+      icon.classList = "fa-regular fa-clipboard";
+      block.appendChild(icon);
+      icon.addEventListener("click", async () => {
+        await copyCode(block, icon);
+      });
+    }
+  });
+
+  async function copyCode(block, icon) {
+    let text = block.innerText;
+    await navigator.clipboard.writeText(text);
+    icon.classList = "fa-solid fa-check";
+    setTimeout((icon) => {
+      icon.classList = "fa-regular fa-clipboard";
+      console.log("timeout")
+    }, 500, icon);
   }
 }
 

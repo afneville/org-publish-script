@@ -22,6 +22,7 @@ body {
   margin: 0;
   background-color: var(--bg);
   min-height: 100vh;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,11 +32,11 @@ body {
 
 .content,
 .content-width {
-  width: calc(100vw - 2em);
+  width: calc(100% - 2em);
   max-width: 75ch;
   margin-inline: auto;
   padding-inline: 1em;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .justify-items {
@@ -54,7 +55,7 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  width: 100vw;
+  /* width: 100%; */
   background-color: var(--bg);
   z-index: 999;
 }
@@ -294,17 +295,33 @@ pre,
 code {
   background: var(--bg-accent);
   font-family: IBMPlexMono, 'Roboto Mono', 'Courier New', Courier, monospace;
-  font-size: 0.75em;
+  font-size: 0.875em;
 }
 
 pre {
   /* border: 1px solid var(--fg-accent); */
   /* border-top: 2px solid var(--fg-accent); */
   /* border-bottom: 2px solid var(--fg-accent); */
+  line-height: normal;
+  position: relative;
   border-radius: 0.5em;
   padding: 0.5em;
-  margin-inline: 0.5em;
-  overflow-x: scroll;
+  margin-inline: 1em;
+  overflow-x: auto;
+}
+
+pre i {
+  font-size: 0.875rem;
+  color: var(--fg-dark);
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5em;
+}
+
+@media (hover: hover) {
+  pre i:hover {
+    color: var(--fg);
+  }
 }
 
 label,
@@ -340,7 +357,7 @@ li:not(:last-child) {
 .figure {
   text-align: center;
   max-width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .figure img {
@@ -393,4 +410,21 @@ li:not(:last-child) {
 }
 .icon-link-list a:active p {
   text-decoration: underline
+}
+
+/* ul, */
+/* p { */
+/*   overflow-x: auto; */
+/*   overflow-y: clip; */
+/* } */
+
+/* ul::-webkit-scrollbar, */
+/* p::-webkit-scrollbar { */
+/*   display: none; */
+/* } */
+
+mjx-container {
+  /* background-color: red; */
+  overflow-x: auto;
+  text-overflow: ellipsis;
 }

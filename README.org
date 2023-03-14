@@ -263,7 +263,7 @@ The preamble is the HTML inserted at the beginning of each HTML document. This i
 		<i class=\"fa-solid fa-angles-up\"></i>
 	    </button>
 	    <button id=\"theme-switch-button\" type=\"button\">
-		<i class=\"fa-solid fa-circle-half-stroke\"></i>
+		<i class=\"fa-solid fa-moon\"></i>
 	    </button>
 	    <button id=\"menu-button\" type=\"button\">
 		<i class=\"fa-solid fa-bars\"></i>
