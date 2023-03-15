@@ -307,29 +307,32 @@ code {
   font-family: IBMPlexMono, 'Roboto Mono', 'Courier New', Courier, monospace;
   font-size: 0.875em;
 }
+.org-src-container {
+  position: relative;
+}
 
 pre {
-  /* border: 1px solid var(--fg-accent); */
+  border: 1px solid var(--fg-accent);
   /* border-top: 2px solid var(--fg-accent); */
   /* border-bottom: 2px solid var(--fg-accent); */
   line-height: normal;
-  position: relative;
+  /* position: relative; */
   border-radius: 0.5em;
   padding: 0.5em;
   margin-inline: 1em;
   overflow-x: auto;
 }
 
-pre i {
+.org-src-container i {
   font-size: 0.875rem;
   color: var(--fg-dark);
   position: absolute;
   top: 0.5rem;
-  right: 0.5em;
+  right: 1.625em;
 }
 
 @media (hover: hover) {
-  pre i:hover {
+  .org-src-container i:hover {
     color: var(--fg);
   }
 }

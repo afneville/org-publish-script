@@ -64,12 +64,12 @@ function scrollFunction() {
 }
 
 function prettyName(filename) {
-  specialNames = ["dsa", "cs"];
+  specialNames = ["dsa", "cs", "vcs"];
   var words = filename.split("-");
   var string = "";
-  for ( var i = 0; i < words.length; i++) {
+  for (var i = 0; i < words.length; i++) {
     if (specialNames.includes(words[i])) {
-      string += words[i].toUpperCase()
+      string += words[i].toUpperCase();
     } else {
       string += words[i].charAt(0).toUpperCase() + words[i].slice(1);
     }
@@ -171,17 +171,28 @@ async function copyCode(block, icon) {
 }
 
 function addClipboardItems() {
-  let blocks = document.querySelectorAll("pre");
-  blocks.forEach((block) => {
+  let blocks = document.getElementsByClassName("org-src-container");
+  for (var i = 0; i < blocks.length; i++) {
     if (navigator.clipboard) {
       let icon = document.createElement("i");
       icon.classList = "fa-regular fa-clipboard";
-      block.appendChild(icon);
+      blocks[i].appendChild(icon);
+      let block = blocks[i].querySelector("pre")
       icon.addEventListener("click", async () => {
         await copyCode(block, icon);
       });
     }
-  });
+  }
+  // blocks.forEach((block) => {
+  //   if (navigator.clipboard) {
+  //     let icon = document.createElement("i");
+  //     icon.classList = "fa-regular fa-clipboard";
+  //     block.appendChild(icon);
+  //     icon.addEventListener("click", async () => {
+  //       await copyCode(block, icon);
+  //     });
+  //   }
+  // });
 }
 
 document
