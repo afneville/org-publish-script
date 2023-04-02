@@ -1,21 +1,41 @@
 #+TITLE: Personal Website Source Code
 
-This repository contains the full source code for [[https://alexneville.co.uk][my personal website]]. The site content (and this document, incidentally) is written in a markdown-like syntax called /Org/; these files have the extension =.org=.
+This repository contains the build system [[https://alexneville.co.uk][my personal website]]. The site content is fetched from my [[https://github.com/alexanderneville/org][document repository]].
 
 * Build
 
-To build a version of the site with the current repository contents, recent versions of both /GNU Emacs/ and /org mode/ are required:
+Recent versions of /GNU Emacs/ and /org mode/ are required:
 
 #+begin_src text
   emacs >= 28.1
   org   >=  9.0
 #+end_src
 
+Clone the repository and update the submodule from which the content is sourced.
+
+#+begin_src text
+  git clone https://github.com/alexanderneville/website
+  cd website 
+  git submodule update --init
+#+end_src
+
 The export script will build the site under =out/html/=.
 
-#+begin_src sh
-  chmod u+x export.sh
+#+begin_src text
   ./export.sh
+#+end_src
+
+Optionally test the generated site locally with docker installed. View the site at =http://localhost:8080=.
+
+#+begin_src text
+  ./test.sh
+#+end_src
+
+Stop and remove the test server container if it is no longer required.
+
+#+begin_src text
+  docker stop dev-server
+  docker rm dev-server
 #+end_src
 
 * Export Configuration
